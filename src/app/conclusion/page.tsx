@@ -1,0 +1,88 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ConclusionView } from "@/components/ConclusionView";
+import {
+  conclusionDetailedMarkdown,
+  conclusionSimpleMarkdown,
+} from "@/data/documents";
+
+export const metadata: Metadata = {
+  title: "Conclusion",
+  description:
+    "The settled meaning of Ṣ-L-W: a standing-state within the full working reach of a power that determines one. Read it in plain language or through the full twelve-section argument.",
+};
+
+const stripTitle = (value: string) => value.replace(/^#\s+.*\r?\n/, "");
+
+export default function ConclusionPage() {
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-line">
+        <div className="hero-glow opacity-70" aria-hidden="true" />
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+          <p className="eyebrow">The conclusion</p>
+          <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[1.02] tracking-[-0.03em] text-ink sm:text-5xl lg:text-6xl">
+            One root. Three poles.{" "}
+            <span className="italic text-gold">Two directions.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            The study ends where it began: with the word. But the word is now a structure —
+            a standing-state within the full working reach of a power that determines one.
+          </p>
+
+          <div className="mt-9 grid gap-3 sm:grid-cols-3">
+            {[
+              ["SITE", "assigned space"],
+              ["STATE", "willing standing"],
+              ["DELIVERY", "imposed standing"],
+            ].map(([pole, gloss]) => (
+              <div key={pole} className="card-flat p-4">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-gold">
+                  {pole}
+                </p>
+                <p className="mt-1.5 font-display text-lg text-ink">{gloss}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-surface/30">
+        <div className="mx-auto w-full max-w-4xl px-5 py-14 text-center sm:px-8 sm:py-18">
+          <p className="font-display text-[1.4rem] leading-[1.45] tracking-[-0.01em] text-ink sm:text-[1.8rem]">
+            “Ṣ-L-W names a{" "}
+            <span className="text-gold">standing-state</span> within the full working
+            reach of a power that determines one.”
+          </p>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted">
+            The Standing is both what you are and what you are in. The fire-stand is the
+            same structure, imposed. The direction is everything.
+          </p>
+        </div>
+      </section>
+
+      <div className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-8 sm:py-16">
+        <ConclusionView
+          simple={stripTitle(conclusionSimpleMarkdown)}
+          detailed={stripTitle(conclusionDetailedMarkdown)}
+        />
+
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-8">
+          <p className="text-sm text-muted">
+            The argument is only as strong as its worst verse.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/verses" className="btn">
+              Check the 108 verses
+              <ArrowRight className="size-4" />
+            </Link>
+            <Link href="/appendix" className="btn btn-gold">
+              Read the full study
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
